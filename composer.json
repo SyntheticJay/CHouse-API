@@ -1,0 +1,18 @@
+{
+    "name": "jay/chouse",
+    "description": "A PHP library for the CHouse API",
+    "autoload": {
+        "psr-4": {
+            "Jay\\CHouse\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jay",
+            "email": "dumpsteredbae@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0.1"
+    }
+}
