@@ -13,16 +13,26 @@ use Illuminate\Support\Collection;
  */
 class CompaniesHouse
 {
+    /**
+     * The base URI for the Companies House API
+     * 
+     * @var string
+     */
     protected const BASE_URI = 'https://api.company-information.service.gov.uk';
 
+    /**
+     * The Guzzle HTTP client
+     *
+     * @var Client
+     */
     private Client $client;
 
     /**
      * Construct a new Companies House wrapper instance
      *
-     * @param   string  $key  The provided API key to query Companies House API
+     * @param string $key The provided API key to query Companies House API
      *
-     * @return  void
+     * @return void
      */
     public function __construct(private string $key)
     {
@@ -39,7 +49,7 @@ class CompaniesHouse
     /**
      * Search for a company via a company ID
      *
-     * @param    string  $companyId   The company ID to query
+     * @param string $companyId The company ID to query
      *
      * @return Collection
      */
@@ -75,9 +85,9 @@ class CompaniesHouse
     /**
      * Search for a company via a company name
      *
-     * @param   string      $companyName  The company name to query
+     * @param string $companyName The company name to query
      *
-     * @return  Collection
+     * @return Collection
      */
     public function fromCompanyName(string $companyName): Collection
     {
@@ -105,13 +115,13 @@ class CompaniesHouse
     /**
      * Fetch data given a URL
      * 
-     * @param   string  $baseURL  The URL to fetch data from
+     * @param string $url The URL to fetch data from
      * 
-     * @return  Collection
+     * @return Collection
      */
-    public function fromURL(string $baseURL)
+    public function fromURL(string $url)
     {
-        $response = $this->client->get($baseURL);
+        $response = $this->client->get($url);
         $content  = $response->getBody()->getContents();
 
         return collect(json_decode($content, true));
